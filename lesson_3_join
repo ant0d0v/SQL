@@ -1,0 +1,48 @@
+/*Показать все таблицы */
+show tables; 
+/*Создать таблицу */
+CREATE table City (
+id int primary key auto_increment,
+Title varchar(30) 
+
+);
+/*Добавить значения*/
+insert into city (Title)
+VALUES ('Warsaw'), ('Dubai'), ('Budapest'),('New York' ), ('Okhtyrka'),('London');
+
+
+select * from City ;
+/*Создать таблицу */
+CREATE table Persons (
+person__name varchar (30)
+
+);
+/* Добавить колонку */
+ALTER table Persons 
+add city_id int;
+
+select * from Persons;
+/* Добавить значения */
+INSERT into Persons (person__name,city_id )
+values ('Alex',1), ('Anton',4), ('Dmitry',1),('Vadim',5),('Anna',3),('Sergey',6),('Tanya',2),('Ignat',2),('Ign',2);
+/* Cоединить значине из Persons и значения таблицы city */
+select * from Persons
+join city on Persons.city_id =  City.id ;
+/* Cоединить значине из Persons и значения таблицы city используя left */
+select * from Persons 
+left join City on Persons.city_id =  City.id ;
+/* n city on Persons.city_id =  City.id ;
+/* Cоединить значине из Persons и значения таблицы city используя right  */
+select * from Persons 
+right join City on Persons.city_id =  City.id ;
+
+/* Двойной JOIN */  
+/* Вывести роли и зарплаты этих ролей */
+SELECT roles.role_name   , salary.monthly_salary , employee_salary.salary_id  FROM roles
+join employee_salary  on roles.id = employee_salary.salary_id
+join salary on employee_salary.salary_id  = salary.id ;
+/* Вывести имена и должности которые соотвествуют им */
+SELECT employees.employee_name , roles.role_name from employees
+join roles_employee on employees.id = roles_employee.employee_id 
+join roles on roles.id = roles_employee.role_id ;
+
